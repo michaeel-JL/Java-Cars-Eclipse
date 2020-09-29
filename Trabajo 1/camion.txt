@@ -1,0 +1,25 @@
+Camión:
+1
+Matrícula:
+8387DWB
+Marca:
+Mercedes
+Modelo:
+Actros
+Color:
+Blanco
+Capacidad:
+3500
+Precio:
+24000
+Extras
+2
+Identificador:
+1
+Descripción:
+Techo paronámico
+Identificador:
+1
+Descripción:
+Lunas tintadas
+
