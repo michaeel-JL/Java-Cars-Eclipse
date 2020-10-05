@@ -9,6 +9,10 @@ public class Empleado {
 		this.usuario = usuario;
 		this.password = password;
 	}
+	
+	public Empleado() {
+		
+	}
 
 	public String getUsuario() {
 		return usuario;

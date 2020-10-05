@@ -17,6 +17,10 @@ public class Camion extends Vehiculo {
 		super(matricula, marca, modelo, color, precio);
 		this.capacidad_carga = capacidad_carga;
 	}
+	
+	public Camion() {
+		
+	}
 
 
 	public int getCapacidad_carga() {
@@ -40,5 +44,6 @@ public class Camion extends Vehiculo {
 	public void escribir(ArrayList<Vehiculo> vehiculos) {
 		camiondao.escribir(vehiculos);
 	}
+
 
 }

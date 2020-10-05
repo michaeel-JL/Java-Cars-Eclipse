@@ -11,10 +11,14 @@ public class Turismo extends Vehiculo {
 	private int num_puertas;
 	private TurismoDao turismodao;
 
-	public Turismo(String matricula, String marca, String modelo, String color, Double precio, int num_puertas, TurismoDao turismodao) {
+	public Turismo(String matricula, String marca, String modelo, String color, Double precio, int num_puertas) {
 		super(matricula, marca, modelo, color, precio);
 		this.num_puertas = num_puertas;
 		this.turismodao = turismodao;
+	}
+	
+	public Turismo() {
+		
 	}
 
 	public int getNum_puertas() {

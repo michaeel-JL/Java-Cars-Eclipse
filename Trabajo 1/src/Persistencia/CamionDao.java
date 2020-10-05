@@ -18,7 +18,7 @@ public class CamionDao {
 	public ArrayList<Vehiculo> leer()  {
 		ArrayList<Vehiculo> personas = new ArrayList<Vehiculo>();
 		try {
-		Scanner in = new Scanner(new FileReader("camion.txt"));
+		Scanner in = new Scanner(new FileReader("camiones.txt"));
 		in.next();
 		int contador = in.nextInt();
 		// Leer camion
