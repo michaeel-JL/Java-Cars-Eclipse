@@ -21,12 +21,12 @@ public class ExtraDao {
 		ArrayList<Extra> extras=new ArrayList<Extra>();
 		try {
 			Scanner in=new Scanner(new  FileReader("extras.txt"));
-			in.nextLine();
+			in.next();
 			int contador = in.nextInt();		
 			for(int i=0;i<contador;i++) {
-				in.nextLine();
+				in.next();
 				int identificador=in.nextInt();
-				in.nextLine();
+				in.next();
 				String descripcion=in.next();
 				Extra extra=new Extra(identificador,descripcion);
 				extras.add(extra);

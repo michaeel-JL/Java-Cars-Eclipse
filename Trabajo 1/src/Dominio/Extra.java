@@ -39,11 +39,8 @@ public class Extra {
 	}
 	
 	
-	
-	
-
 	public String toString() {
-		return "Extra [identificador=" + identificador + ", descripcion=" + descripcion + "]";
+		return "Extras (Identificador: " + identificador + ", Descripcion: " + descripcion + ")";
 	}
 
 	public ArrayList<Extra> leer() {

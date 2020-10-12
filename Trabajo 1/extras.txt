@@ -1,10 +1,10 @@
-Extras
+Extras: 
 2
-Identificador:
+identificador: 
 1
-Descripcion:
+descripcion: 
 Techo_panoramico
-Identificador:
-1
-Descripcion:
-Lunas tintadas
+identificador: 
+2
+descripcion: 
+Lunas

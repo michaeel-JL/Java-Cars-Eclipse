@@ -55,11 +55,11 @@ public class Principal {
 				System.out.println("Menú");
 				System.out.println("1. Mostrar todos los vehiculos");
 				System.out.println("2. Buscar un vehiculo");
-				System.out.println("3. AÃ±adir un vehiculo");
+				System.out.println("3. Añadir un vehiculo");
 				System.out.println("4. Modificar un vehiculo");
 				System.out.println("5. Eliminar un vehiculo");
 				System.out.println("6. Mostrar todos los extras disponibles");
-				System.out.println("7. AÃ±adir un extra");
+				System.out.println("7. Añadir un extra");
 				System.out.println("8. Eliminar un extra");
 				System.out.println("9. Log out");
 				int opcion = sc.nextInt();
@@ -117,14 +117,13 @@ public class Principal {
 
 		// bucle para indicar usuario y contraseÃ±a
 		do {
-			System.out.println("Bucle");
 
 			boolean user = false;
 
 			do {
 
 				try {
-					System.out.print("\n Usuario: ");
+					System.out.print(" Usuario: ");
 					usuario = sc.next();
 					user = true;
 				} catch (InputMismatchException e) {
@@ -133,11 +132,10 @@ public class Principal {
 				}
 
 			} while (user == false);
+			System.out.println(" Contraseña: ");
 			password = sc.next();
 
 			for (int i = 0; i < empleados.size(); i++) {
-				System.out.println(empleados.get(i).getUsuario());
-				System.out.println(usuario);
 					
 					if (usuario.equals(empleados.get(i).getUsuario())) {
 						
@@ -182,6 +180,7 @@ public class Principal {
 				Extra delExtra = new Extra();
 				delExtra.escribir(extras);
 				encontrado = true;
+				System.out.println("Extra eliminado correctamente");
 				break;
 			}
 		}
@@ -195,7 +194,7 @@ public class Principal {
 			seguir = false;
 			try {
 				mostrarExtras(extras);
-				System.out.println("Introduzca el Id del Extra");
+				System.out.println("\n Introduzca el Id del Extra: ");
 				id = sc.nextInt();
 				for (int i = 0; i < extras.size(); i++) {
 					if (extras.get(i).getIdentificador() == id) {
@@ -204,7 +203,7 @@ public class Principal {
 					}
 				}
 			} catch (InputMismatchException e) {
-				System.err.println("Introduzce solo nÃºmeros");
+				System.err.println("Introduce solo números");
 				seguir = true;
 				sc.nextLine();
 			}
@@ -212,16 +211,17 @@ public class Principal {
 
 		System.out.println("Introduzca la descripcion");
 		String descripcion = sc.next();
-		// Guardamos en extras el identificador y la descripciÃ³n que nos ha dado el
+		// Guardamos en extras el identificador y la descripción que nos ha dado el
 		// usuario
 		Extra newExtra = new Extra(id, descripcion);
 		extras.add(newExtra);
 		newExtra.escribir(extras);
+		
+		System.out.println("\n Extra añadido correctamente");
 
 	}
 
 	public static void mostrarExtras(ArrayList<Extra> extras) {
-		System.out.println("Extra");
 		for (int i = 0; i < extras.size(); i++) {
 			System.out.println(extras.get(i).toString());
 		}
@@ -251,21 +251,29 @@ public class Principal {
 						System.out.println("Introduce la nueva MatrÃ­cula");
 						String matricula_nueva = sc.next();
 						camiones.get(i).setMatricula(matricula_nueva);
+							encontrado=true;
+
 						break;
 					case 2:
 						System.out.println("Introduce la nueva Marca");
 						String marca = sc.next();
 						camiones.get(i).setMarca(marca);
+							encontrado=true;
+
 						break;
 					case 3:
 						System.out.println("Introduce el nuevo modelo");
 						String modelo = sc.next();
 						camiones.get(i).setModelo(modelo);
+							encontrado=true;
+
 						break;
 					case 4:
 						System.out.println("Introduce el nuevo color");
 						String color = sc.next();
 						camiones.get(i).setColor(color);
+							encontrado=true;
+
 						break;
 					case 5:
 						boolean seguir = false;
@@ -282,6 +290,8 @@ public class Principal {
 								seguir = true;
 							}
 						} while (seguir);
+							encontrado=true;
+
 						break;
 					case 6:
 						seguir = false;
@@ -298,6 +308,8 @@ public class Principal {
 								seguir = true;
 							}
 						} while (seguir);
+							encontrado=true;
+
 						break;
 					}
 					encontrado = true;
@@ -311,7 +323,7 @@ public class Principal {
 
 		for (int i = 0; i < turismos.size(); i++) {
 			if (turismos.get(i).getMatricula().equals(matricula)) {
-				System.out.println("Â¿QuÃ© deseas modificar?");
+				System.out.println("¿Que deseas modificar?");
 				System.out.println("1. Matricula");
 				System.out.println("2. Marca");
 				System.out.println("3. Modelo");
@@ -327,21 +339,29 @@ public class Principal {
 						System.out.println("Introduce la nueva matricula");
 						String matricula_nueva = sc.next();
 						turismos.get(i).setMatricula(matricula_nueva);
+							encontrado=true;
+
 						break;
 					case 2:
 						System.out.println("Introduce la nueva marca");
 						String marca = sc.next();
 						turismos.get(i).setMarca(marca);
+							encontrado=true;
+
 						break;
 					case 3:
 						System.out.println("Introduce el nuevo Modelo");
 						String modelo = sc.next();
 						turismos.get(i).setModelo(modelo);
+							encontrado=true;
+
 						break;
 					case 4:
 						System.out.println("Introduce el nuevo Color");
 						String color = sc.next();
 						turismos.get(i).setColor(color);
+							encontrado=true;
+
 						break;
 					case 5:
 						boolean seguir = false;
@@ -353,11 +373,13 @@ public class Principal {
 								turismos.get(i).setPrecio(precio);
 								break;
 							} catch (InputMismatchException e) {
-								System.err.println("Introduzce solo nÃºmeros");
+								System.err.println("Introduzce solo numeros");
 								sc.nextLine();
 								seguir = true;
 							}
 						} while (seguir);
+						     encontrado=true;
+
 						break;
 					case 6:
 						boolean seguir_2 = false;
@@ -369,11 +391,13 @@ public class Principal {
 								((Turismo) turismos.get(i)).setNum_puertas(num_puertas);
 								break;
 							} catch (InputMismatchException e) {
-								System.err.println("Introduzce solo nÃºmeros");
+								System.err.println("Introduzce solo numeros");
 								sc.nextLine();
 								seguir_2 = true;
 							}
 						} while (seguir_2);
+						    encontrado=true;
+
 						break;
 					case 7:
 						seguir = false;
@@ -386,28 +410,30 @@ public class Principal {
 								for (int j = 0; j < extras.size(); j++) {
 									if (extras.get(j).getIdentificador() == extra) {
 										encontrado = true;
-										((Turismo) turismos.get(i)).setExtra(extras.get(j));
+										((Turismo) turismos.get(i)).setExtra(extras.get(i).getIdentificador());
 										break;
 									}
 								}
 								if (encontrado == false) {
 									Extra sinExtra = new Extra(0, "Sin extra");
-									((Turismo) turismos.get(i)).setExtra(sinExtra);
+									((Turismo) turismos.get(i)).setExtra(sinExtra.getIdentificador());
 
 								}
 								break;
 							} catch (InputMismatchException e) {
-								System.err.println("Introduzce solo nÃºmeros");
+								System.err.println("Introduzce solo numeros");
 								sc.nextLine();
 								seguir = true;
 							}
 						} while (seguir);
+							encontrado=true;
+
 						break;
 					}
 					Vehiculo modVehiculo = new Turismo();
 					modVehiculo.escribir(turismos);
 				} catch (InputMismatchException e) {
-					System.err.println("Introduzce solo nÃºmeros");
+					System.err.println("Introduzce solo numeros");
 				}
 			}
 		}
@@ -419,7 +445,7 @@ public class Principal {
 	}
 
 	public static void eliminarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos) throws IOException {
-		System.out.println("Indica la matrÃ­cula");
+		System.out.println("Indica la matricula: ");
 		String matricula = sc.next();
 		boolean encontrado = false;
 		for (int i = 0; i < camiones.size(); i++) {
@@ -428,6 +454,7 @@ public class Principal {
 				Vehiculo delCamion = new Camion();
 				delCamion.escribir(camiones);
 				encontrado = true;
+				System.out.println("\nCamión eliminado correctamente");
 			}
 		}
 		for (int i = 0; i < turismos.size(); i++) {
@@ -436,10 +463,11 @@ public class Principal {
 				Vehiculo delTurismo = new Turismo();
 				delTurismo.escribir(turismos);
 				encontrado = true;
+				System.out.println("\n Turimso eliminado correctamente");
 			}
 		}
 		if (encontrado == false) {
-			System.out.printf("No existe el Vehiculo con la matricula %s\n", matricula);
+			System.out.printf("No existe un Vehiculo con la matricula %s\n", matricula);
 		}
 	}
 
@@ -470,7 +498,7 @@ public class Principal {
 		for (int i = 0; i < camiones.size(); i++) {
 			System.out.println(camiones.get(i).toString());
 		}
-		System.out.println("Turidmos");
+		System.out.println("Turismos");
 		for (int i = 0; i < turismos.size(); i++) {
 			System.out.println(turismos.get(i).toString());
 		}

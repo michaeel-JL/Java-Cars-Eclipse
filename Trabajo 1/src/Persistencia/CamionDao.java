@@ -23,24 +23,23 @@ public class CamionDao {
 		
 		try {
 		Scanner in = new Scanner(new FileReader("camiones.txt"));
-		in.nextLine();
+		in.next();
 		int contador = in.nextInt();
 		// Leer camion
 
 		for (int i = 0; i < contador; i++) {
-			in.nextLine();
+			in.next();
 			String Matricula = in.next();
-			in.nextLine();
+			in.next();
 			String Marca = in.next();
-			in.nextLine();
+			in.next();
 			String Modelo = in.next();
-			in.nextLine();
+			in.next();
 			String Color = in.next();
-			in.nextLine();
+			in.next();
 			int Capacidad = in.nextInt();
-			in.nextLine();
+			in.next();
 			double Precio = in.nextDouble();
-			in.nextLine();
 			Vehiculo camion = new Camion(Matricula, Marca, Modelo, Color, Precio, Capacidad);
 			camiones.add(camion);
 		}
@@ -71,10 +70,11 @@ public class CamionDao {
 				out.println(vehiculos.get(i).getModelo());
 				out.println("color: ");
 				out.println(vehiculos.get(i).getColor());
-				out.println("precio: ");
-				out.println(vehiculos.get(i).getPrecio());
-				out.println("num puertas: ");
+				out.println("capacidad: ");
 				out.println(((Camion) vehiculos.get(i)).getCapacidad_carga());
+				out.println("precio: ");
+				String precio=vehiculos.get(i).getPrecio()+"";precio=precio.replace(".", ",");
+				out.println(precio);
 			
 			}
 			out.close();

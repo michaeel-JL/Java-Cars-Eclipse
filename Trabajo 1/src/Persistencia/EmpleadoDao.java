@@ -22,14 +22,14 @@ public class EmpleadoDao {
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		try {
 		Scanner in = new Scanner(new FileReader("empleados.txt"));
-		in.nextLine();
+		in.next();
 		int contador = in.nextInt();
 		// Leer alumnos
 
 		for (int i = 0; i < contador; i++) {
-			in.nextLine();
+			in.next();
 			String usuario = in.next();
-			in.nextLine();
+			in.next();
 			String password = in.next();
 
 			Empleado empleado = new Empleado(usuario, password);

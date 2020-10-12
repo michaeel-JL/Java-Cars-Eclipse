@@ -9,7 +9,7 @@ import Persistencia.VehiculoDao;
 
 public class Turismo extends Vehiculo {
 	private int num_puertas;
-	private Extra extra;
+	private int extra;
 	private TurismoDao turismodao;
 
 	public Turismo(String matricula, String marca, String modelo, String color, double precio, int num_puertas, int extra) {
@@ -32,11 +32,11 @@ public class Turismo extends Vehiculo {
 		this.num_puertas = num_puertas;
 	}
 	
-	public Extra getExtra() {
+	public int getExtra() {
 		return extra;
 	}
 
-	public void setExtra(Extra extra) {
+	public void setExtra(int extra) {
 		this.extra = extra;
 	}
 

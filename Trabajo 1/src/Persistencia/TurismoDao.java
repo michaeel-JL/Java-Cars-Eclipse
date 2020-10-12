@@ -31,19 +31,19 @@ public class TurismoDao {
 			
 			// Leer turismo
 			for (int i = 0; i < contador; i++) {
-				in.nextLine();
+				in.next();
 				String matricula = in.next();
-				in.nextLine();
+				in.next();
 				String marca = in.next();
-				in.nextLine();
+				in.next();
 				String modelo = in.next();
-				in.nextLine();
+				in.next();
 				String color = in.next();
-				in.nextLine();
+				in.next();
 				double precio = in.nextDouble();
-				in.nextLine();
+				in.next();
 				int num_puertas = in.nextInt();
-				in.nextLine();
+				in.next();
 				int extra = in.nextInt();
 				boolean encontrado = false;
 				for (int j = 0; j < extras.size(); j++) {
@@ -91,8 +91,9 @@ public class TurismoDao {
 				out.println("color: ");
 				out.println(vehiculos.get(i).getColor());
 				out.println("precio: ");
-				out.println(vehiculos.get(i).getPrecio());
-				out.println("num puertas: ");
+				String precio=vehiculos.get(i).getPrecio()+"";precio=precio.replace(".", ",");
+				out.println(precio);
+				out.println("num_puertas: ");
 				out.println(((Turismo) vehiculos.get(i)).getNum_puertas());
 				out.println("extra: ");
 				out.println(((Turismo) vehiculos.get(i)).getExtra());
