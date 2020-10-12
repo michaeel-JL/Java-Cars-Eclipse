@@ -34,8 +34,8 @@ public class Camion extends Vehiculo {
 
 	@Override
 	public String toString() {
-		return "Camion [matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color
-				+ ", precio= " + precio + ", capacidad_carga=" + capacidad_carga + "]";
+		return "Camion ( Matricula: " + matricula + ", Marca:" + marca + ", Modelo:" + modelo + ", Color: " + color
+				+ ", Precio: " + precio + ", Capacidad de carga: " + capacidad_carga + " )";
 	}
 
 	public ArrayList<Vehiculo> leer() {

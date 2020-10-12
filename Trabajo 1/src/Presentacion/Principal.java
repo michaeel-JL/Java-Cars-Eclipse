@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 class excepcionUsuario extends Exception {
 }
 
@@ -43,7 +45,7 @@ public class Principal {
 		turismos = turismo.leer();
 
 		System.out.println(empleados);
-		// MenÃº principal
+		// Menú principal
 
 		boolean seguir = true;
 
@@ -51,34 +53,29 @@ public class Principal {
 		System.out.println("Login correcto. Bienvenido " + empleado.getUsuario());
 
 		do {
-			try {
-				System.out.println("Menú");
-				System.out.println("1. Mostrar todos los vehiculos");
-				System.out.println("2. Buscar un vehiculo");
-				System.out.println("3. Añadir un vehiculo");
-				System.out.println("4. Modificar un vehiculo");
-				System.out.println("5. Eliminar un vehiculo");
-				System.out.println("6. Mostrar todos los extras disponibles");
-				System.out.println("7. Añadir un extra");
-				System.out.println("8. Eliminar un extra");
-				System.out.println("9. Log out");
-				int opcion = sc.nextInt();
+			try {//Menú principal
+				int opcion =Integer.parseInt(JOptionPane.showInputDialog("Menú \n"
+                        + "1. Mostrar todos los vehiculos\n"+ "2. Buscar un vehiculo\n"+"3. Añadir un vehiculo\n"+
+                        "4. Modificar un vehiculo\n"+"5. Eliminar un vehiculo\n"+ "6. Mostrar todos los extras disponibles\n"+
+                        "7. Añadir un extra\n"+"8. Eliminar un extra\n"+"9. Log out"));
 
+				
+				//
 				switch (opcion) {
 				case 1:
-					mostrarTodos(camiones, turismos);
+					mostrarTodos(camiones, turismos); //HECHO
 					break;
 				case 2:
-					buscarVehiculo(camiones, turismos);
+					buscarVehiculo(camiones, turismos); //HECHO
 					break;
 				case 3:
-					anadirVehiculo(camiones, turismos, extras);
+					anadirVehiculo(camiones, turismos, extras); //HECHO
 					break;
 				case 4:
 					modificarVehiculo(camiones, turismos, extras); // HECHO
 					break;
 				case 5:
-					eliminarVehiculo(camiones, turismos);
+					eliminarVehiculo(camiones, turismos); //HECHO
 					break;
 				case 6:
 					mostrarExtras(extras); // HECHO
@@ -118,38 +115,31 @@ public class Principal {
 		// bucle para indicar usuario y contraseÃ±a
 		do {
 
-			boolean user = false;
+            boolean user = false;
 
-			do {
+            do {
 
-				try {
-					System.out.print(" Usuario: ");
-					usuario = sc.next();
-					user = true;
-				} catch (InputMismatchException e) {
-					System.err.println("Error - No se pueden introducir letras"); // Excepciones QUITAR ?
-					sc.nextLine();
-				}
+                  usuario = JOptionPane.showInputDialog("Indique su usuario: ");
+                  user = true;
 
-			} while (user == false);
-			System.out.println(" Contraseña: ");
-			password = sc.next();
 
-			for (int i = 0; i < empleados.size(); i++) {
-					
-					if (usuario.equals(empleados.get(i).getUsuario())) {
-						
-						usuarioCorrecto = true;
-						if (password.equals(empleados.get(i).getPassword())) {
-							passwordCorrecto = true;
-							login = true;
-							empleado = empleados.get(i);
-							// i = empleadosdiurnos.size() + empleadosnocturnos.size();// REVISAR
-						}
-					}
+            } while (user == false);
+             password = JOptionPane.showInputDialog("Indique su contraseña: ");
 
-			}
 
+            for (int i = 0; i < empleados.size(); i++) {
+
+                    if (usuario.equals(empleados.get(i).getUsuario())) {
+
+                        usuarioCorrecto = true;
+                        if (password.equals(empleados.get(i).getPassword())) {
+                            passwordCorrecto = true;
+                            login = true;
+                            empleado = empleados.get(i);
+                        }
+                    }
+
+            }
 			// Excepciones de usuario o contraseÃ±a incorrectos
 			try {
 				if (usuarioCorrecto == false)
@@ -159,34 +149,30 @@ public class Principal {
 
 			} catch (excepcionUsuario e) {
 				System.err.println("111. Error. Login incorrecto");
-				sc.nextLine();
 			} catch (excepcionPassword e) {
 				System.err.println("222. Error. Password incorrecto");
-				sc.nextLine();
 
 			}
-
 		} while (login == false);
 		return empleado;
 	}
-
 	public static void eliminarExtra(ArrayList<Extra> extras) throws IOException {
-		System.out.println("Indica el Id del extra: ");
-		int id = sc.nextInt();
-		boolean encontrado = false;
-		for (int i = 0; i < extras.size(); i++) {
-			if (extras.get(i).getIdentificador() == id) {
-				extras.remove(i);
-				Extra delExtra = new Extra();
-				delExtra.escribir(extras);
-				encontrado = true;
-				System.out.println("Extra eliminado correctamente");
-				break;
-			}
-		}
 
-	}
+        int id =Integer.parseInt(JOptionPane.showInputDialog("Indique el id"));
 
+       boolean encontrado = false;
+       for (int i = 0; i < extras.size(); i++) {
+           if (extras.get(i).getIdentificador() == id) {
+               extras.remove(i);
+               Extra delExtra = new Extra();
+               delExtra.escribir(extras);
+               encontrado = true;
+               JOptionPane.showMessageDialog(null, "Extra eliminado correctamente");
+               break;
+           }
+       }
+
+   }
 	public static void anadirExtra(ArrayList<Extra> extras) throws IOException {
 		boolean seguir = false;
 		int id = 0;
@@ -194,8 +180,8 @@ public class Principal {
 			seguir = false;
 			try {
 				mostrarExtras(extras);
-				System.out.println("\n Introduzca el Id del Extra: ");
-				id = sc.nextInt();
+				id =Integer.parseInt(JOptionPane.showInputDialog("Indique el id del extras"));
+
 				for (int i = 0; i < extras.size(); i++) {
 					if (extras.get(i).getIdentificador() == id) {
 						System.out.println("Id repetido");
@@ -203,21 +189,18 @@ public class Principal {
 					}
 				}
 			} catch (InputMismatchException e) {
-				System.err.println("Introduce solo números");
+				JOptionPane.showMessageDialog(null, "Introduce solo números");
 				seguir = true;
 				sc.nextLine();
 			}
 		} while (seguir);
-
-		System.out.println("Introduzca la descripcion");
-		String descripcion = sc.next();
+		String descripcion = JOptionPane.showInputDialog("Introduzca la descripcion");
 		// Guardamos en extras el identificador y la descripción que nos ha dado el
 		// usuario
 		Extra newExtra = new Extra(id, descripcion);
 		extras.add(newExtra);
 		newExtra.escribir(extras);
-		
-		System.out.println("\n Extra añadido correctamente");
+		JOptionPane.showMessageDialog(null, "Extra añadido correctamente");
 
 	}
 
@@ -231,14 +214,14 @@ public class Principal {
 	public static void modificarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos,
 			ArrayList<Extra> extras) throws IOException {
 
-		System.out.println("Indica la matrÃ­cula");
-		String matricula = sc.next();
+		String matricula = JOptionPane.showInputDialog("Indica la matrícula");
+
 		boolean encontrado = false;
 
 		for (int i = 0; i < camiones.size(); i++) {
 			if (camiones.get(i).getMatricula().equals(matricula)) {
-				System.out.println("Â¿QuÃ© deseas modificar?");
-				System.out.println("1. MatrÃ­cula");
+				System.out.println("¿Qué deseas modificar?");
+				System.out.println("1. Matrícula");
 				System.out.println("2. Marca");
 				System.out.println("3. Modelo");
 				System.out.println("4. Color");
@@ -248,29 +231,30 @@ public class Principal {
 					int opcion = sc.nextInt();
 					switch (opcion) {
 					case 1:
-						System.out.println("Introduce la nueva MatrÃ­cula");
-						String matricula_nueva = sc.next();
+						String matricula_nueva = JOptionPane.showInputDialog("Introduce la nueva matrícula");
+
 						camiones.get(i).setMatricula(matricula_nueva);
 							encontrado=true;
 
 						break;
 					case 2:
-						System.out.println("Introduce la nueva Marca");
-						String marca = sc.next();
+						String marca = JOptionPane.showInputDialog("Introduce la nueva Marca");
+
 						camiones.get(i).setMarca(marca);
 							encontrado=true;
 
 						break;
 					case 3:
-						System.out.println("Introduce el nuevo modelo");
-						String modelo = sc.next();
+						String modelo = JOptionPane.showInputDialog("Introduce el nuevo modelo");
+						
 						camiones.get(i).setModelo(modelo);
 							encontrado=true;
 
 						break;
 					case 4:
-						System.out.println("Introduce el nuevo color");
-						String color = sc.next();
+						
+						String color = JOptionPane.showInputDialog("Introduce el nuevo color");
+
 						camiones.get(i).setColor(color);
 							encontrado=true;
 
@@ -280,12 +264,12 @@ public class Principal {
 						do {
 							seguir = false;
 							try {
-								System.out.println("Introduce el nuevo precio");
-								double precio = sc.nextDouble();
+								double precio = Double.parseDouble(JOptionPane.showInputDialog("Introduce el precio:"));
+
 								camiones.get(i).setPrecio(precio);
 								break;
 							} catch (InputMismatchException e) {
-								System.err.println("Introduzce solo nÃºmeros");
+								JOptionPane.showMessageDialog(null, "Introduce solo números");
 								sc.nextLine();
 								seguir = true;
 							}
@@ -298,12 +282,12 @@ public class Principal {
 						do {
 							seguir = false;
 							try {
-								System.out.println("Introduce la nueva capacidad de carga");
-								int capacidad_carga = sc.nextInt();
+								int capacidad_carga = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la capacidad de carga"));
+
 								((Camion) camiones.get(i)).setCapacidad_carga(capacidad_carga);
 								break;
 							} catch (InputMismatchException e) {
-								System.err.println("Introduzce solo nÃºmeros");
+								JOptionPane.showMessageDialog(null, "Introduce solo números");
 								sc.nextLine();
 								seguir = true;
 							}
@@ -316,7 +300,7 @@ public class Principal {
 					Vehiculo modCamion = new Camion();
 					modCamion.escribir(camiones);
 				} catch (InputMismatchException e) {
-					System.err.println("Introduzce solo nÃºmeros");
+					JOptionPane.showMessageDialog(null, "Introduce solo números");
 				}
 			}
 		}
@@ -391,7 +375,7 @@ public class Principal {
 								((Turismo) turismos.get(i)).setNum_puertas(num_puertas);
 								break;
 							} catch (InputMismatchException e) {
-								System.err.println("Introduzce solo numeros");
+								System.err.println("Introduzce solo números");
 								sc.nextLine();
 								seguir_2 = true;
 							}
@@ -433,7 +417,7 @@ public class Principal {
 					Vehiculo modVehiculo = new Turismo();
 					modVehiculo.escribir(turismos);
 				} catch (InputMismatchException e) {
-					System.err.println("Introduzce solo numeros");
+					System.err.println("Introduzce solo números");
 				}
 			}
 		}
@@ -445,50 +429,52 @@ public class Principal {
 	}
 
 	public static void eliminarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos) throws IOException {
-		System.out.println("Indica la matricula: ");
-		String matricula = sc.next();
-		boolean encontrado = false;
-		for (int i = 0; i < camiones.size(); i++) {
-			if (camiones.get(i).getMatricula().equals(matricula)) {
-				camiones.remove(i);
-				Vehiculo delCamion = new Camion();
-				delCamion.escribir(camiones);
-				encontrado = true;
-				System.out.println("\nCamión eliminado correctamente");
-			}
-		}
-		for (int i = 0; i < turismos.size(); i++) {
-			if (turismos.get(i).getMatricula().equals(matricula)) {
-				turismos.remove(i);
-				Vehiculo delTurismo = new Turismo();
-				delTurismo.escribir(turismos);
-				encontrado = true;
-				System.out.println("\n Turimso eliminado correctamente");
-			}
-		}
-		if (encontrado == false) {
-			System.out.printf("No existe un Vehiculo con la matricula %s\n", matricula);
-		}
-	}
+        String matricula = JOptionPane.showInputDialog("Introduzca la matricula");
+
+        boolean encontrado = false;
+        for (int i = 0; i < camiones.size(); i++) {
+            if (camiones.get(i).getMatricula().equals(matricula)) {
+                camiones.remove(i);
+                Vehiculo delCamion = new Camion();
+                delCamion.escribir(camiones);
+                encontrado = true;
+                JOptionPane.showMessageDialog(null, "\nCamión eliminado correctamente");
+            }
+        }
+        for (int i = 0; i < turismos.size(); i++) {
+            if (turismos.get(i).getMatricula().equals(matricula)) {
+                turismos.remove(i);
+                Vehiculo delTurismo = new Turismo();
+                delTurismo.escribir(turismos);
+                encontrado = true;
+                JOptionPane.showMessageDialog(null, "\nTurismo eliminado correctamente");
+            }
+        }
+        if (encontrado == false) {
+            JOptionPane.showMessageDialog(null, "No existe la matricula :"+ matricula);
+        }
+    }
 
 	public static void buscarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos) {
-		System.out.println("Indica la matricula");
-		String matricula = sc.next();
+		mostrarTodos(camiones, turismos);
+        String matricula  = JOptionPane.showInputDialog("Indica la matrícula");
+
 		boolean encontrado = false;
 		for (int i = 0; i < camiones.size(); i++) {
 			if (camiones.get(i).getMatricula().equals(matricula)) {
-				System.out.println(camiones.get(i).toString());
+				JOptionPane.showMessageDialog(null, camiones.get(i).toString());
+
 				encontrado = true;
 			}
 		}
 		for (int i = 0; i < turismos.size(); i++) {
 			if (turismos.get(i).getMatricula().equals(matricula)) {
-				System.out.println(turismos.get(i).toString());
+				JOptionPane.showMessageDialog(null, turismos.get(i).toString());
 				encontrado = true;
 			}
 		}
 		if (encontrado == false) {
-			System.out.printf("No existe el vehiculo con la matricula %s\n", matricula);
+			JOptionPane.showMessageDialog(null, "No existe el vehiculo con la matrícula " + matricula + "\n");
 
 		}
 	}
@@ -510,36 +496,33 @@ public class Principal {
 		String matricula = "";
 		do {
 			seguir = false;
-			System.out.println("Introduzca la matricula");
-			matricula = sc.next();
+            matricula = JOptionPane.showInputDialog("Introduzca la matricula");
+
 			for (int i = 0; i < camiones.size(); i++) {
 				if (camiones.get(i).getMatricula().equals(matricula)) {
-					System.out.println("Matricula repetida");
+					JOptionPane.showMessageDialog(null, "Matrícula repetida");
 					seguir = true;
 				}
 			}
 			for (int i = 0; i < turismos.size(); i++) {
 				if (turismos.get(i).getMatricula().equals(matricula)) {
-					System.out.println("Matricula repetida");
+					JOptionPane.showMessageDialog(null, "Matrícula repetida");
 					seguir = true;
 				}
 			}
 
 		} while (seguir);
-		System.out.println("Introduzca la marca");
-		String marca = sc.next();
-		System.out.println("Introduzca el modelo");
-		String modelo = sc.next();
-		System.out.println("Introduzca el color");
-		String color = sc.next();
+		String marca = JOptionPane.showInputDialog("Introduce la marca:");
+		String modelo = JOptionPane.showInputDialog("Introduce el modelo:");
+		String color = JOptionPane.showInputDialog("Introduce el color:");
 		Double precio = 0.0;
 		do {
 			seguir = false;
 			try {
-				System.out.println("Introduzca el precio");
-				precio = sc.nextDouble();
+				precio = Double.parseDouble(JOptionPane.showInputDialog("Introduce el precio:"));
+
 			} catch (InputMismatchException e) {
-				System.err.println("Introduzce solo nï¿½meros");
+				JOptionPane.showMessageDialog(null, "Introduce solo números");
 				seguir = true;
 				sc.nextLine();
 			}
@@ -549,17 +532,15 @@ public class Principal {
 		int num_puertas = 0;
 		int extra = 0;
 		do {
-			System.out.println("Eres profesor (1) o Alumno (2)");
+			tipo = Integer.parseInt(JOptionPane.showInputDialog("Quieres introducir un Camión(1) o Turismo(2)"));
 			try {
-				tipo = sc.nextInt();
 				if (tipo == 1) {
 					do {
 						seguir = false;
 						try {
-							System.out.println("Introduzca la capacidad de carga");
-							capacidad_carga = sc.nextInt();
+							capacidad_carga = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la capacidad de carga"));
 						} catch (InputMismatchException e) {
-							System.err.println("Introduzce solo nï¿½meros");
+							JOptionPane.showMessageDialog(null, "Introduce solo números");
 							seguir = true;
 							sc.nextLine();
 						}
@@ -571,10 +552,10 @@ public class Principal {
 					do {
 						seguir = false;
 						try {
-							System.out.println("Introduzca el numero de  puertas");
-							num_puertas = sc.nextInt();
+							num_puertas = Integer.parseInt(JOptionPane.showInputDialog("\n Introduce el número de puertas"));
+
 						} catch (InputMismatchException e) {
-							System.err.println("Introduzce solo nï¿½meros");
+							JOptionPane.showMessageDialog(null, "Introduce solo números");
 							seguir = true;
 							sc.nextLine();
 						}
@@ -585,8 +566,8 @@ public class Principal {
 					do {
 						seguir = false;
 						try {
-							System.out.println("Introduzca el extra");
-							extra = sc.nextInt();
+							extra = Integer.parseInt(JOptionPane.showInputDialog("\n Introduce el extra"));
+
 							boolean encontrado = false;
 							for (int j = 0; j < extras.size(); j++) {
 								if (extras.get(j).getIdentificador() == extra) {
@@ -599,7 +580,7 @@ public class Principal {
 
 							}
 						} catch (InputMismatchException e) {
-							System.err.println("Introduzce solo numeros");
+							JOptionPane.showMessageDialog(null, "Introduce solo números");
 							seguir = true;
 							sc.nextLine();
 						}
@@ -610,7 +591,7 @@ public class Principal {
 				}
 
 			} catch (InputMismatchException e) {
-				System.err.println("Introduzce solo nï¿½meros");
+				JOptionPane.showMessageDialog(null, "Introduce solo números");
 				sc.nextLine();
 			}
 		} while (tipo < 1 || tipo > 2);

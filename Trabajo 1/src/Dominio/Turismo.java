@@ -50,8 +50,8 @@ public class Turismo extends Vehiculo {
 
 	@Override
     public String toString() {
-        return "Turismo [matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color
-                + ", precio= " + precio + ", num_puertas=" + num_puertas + ",extra=" +extra+"]";
+        return "Turismo ( Matricula: " + matricula + ", Marca: " + marca + ", Modelo: " + modelo + ", Color: " + color
+                + ", Precio: " + precio + ", Nº de puertas: " + num_puertas + ", Extra: " +extra+" )";
     }
 
 }

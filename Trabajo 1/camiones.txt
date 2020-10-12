@@ -1,5 +1,5 @@
 camiones:
-2
+3
 matricula: 
 8387DWB
 marca: 
@@ -24,3 +24,15 @@ capacidad:
 12
 precio: 
 12342,0
+matricula: 
+qwe
+marca: 
+marcaaa
+modelo: 
+kokok
+color: 
+qwerty
+capacidad: 
+12
+precio: 
+12,0
