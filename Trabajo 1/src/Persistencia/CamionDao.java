@@ -14,15 +14,17 @@ import Dominio.Vehiculo;
 
 public class CamionDao {
 	
+	//Creamos contructor vacio
 	public CamionDao() {
 
 	}
 	
+	//Creamos metodo para leer el fichero
 	public ArrayList<Vehiculo> leer()  {
 		ArrayList<Vehiculo> camiones = new ArrayList<Vehiculo>();
 		
 		try {
-		Scanner in = new Scanner(new FileReader("camiones.txt"));
+		Scanner in = new Scanner(new FileReader("camiones.txt")); //Leemos el fichero
 		in.next();
 		int contador = in.nextInt();
 		// Leer camion
@@ -44,7 +46,7 @@ public class CamionDao {
 			camiones.add(camion);
 		}
 		in.close();
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) { //Por si el fichero no existe
 			System.out.println("El fichero especificado no existe");
 		} catch (IOException e) {
 			System.out.println("Excepcion de entrada/salida:" + e.toString());
@@ -54,11 +56,11 @@ public class CamionDao {
 	}
 	
 	
-	
+	//Creamos el metodo para escribir en el fichero
 	public void escribir(ArrayList<Vehiculo> vehiculos) {
 		PrintWriter out;
 		try {
-			out = new PrintWriter(new FileWriter("camiones.txt"));
+			out = new PrintWriter(new FileWriter("camiones.txt")); //Decimos que fichero creemos escribir
 			out.println("camiones:");
 			out.println(vehiculos.size());
 			for (int i = 0; i < vehiculos.size(); i++) {

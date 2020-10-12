@@ -13,15 +13,16 @@ import Dominio.Empleado;
 
 public class EmpleadoDao {
 	
+	//Creamos contructor vacio
 	public EmpleadoDao() {
 
 	}
-
+	//Creamos metodo para leer el fichero
 	public ArrayList<Empleado> leerEmpleados() {
 		
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		try {
-		Scanner in = new Scanner(new FileReader("empleados.txt"));
+		Scanner in = new Scanner(new FileReader("empleados.txt")); //Leemos el fichero
 		in.next();
 		int contador = in.nextInt();
 		// Leer alumnos
@@ -36,7 +37,7 @@ public class EmpleadoDao {
 			empleados.add(empleado);
 		}
 		in.close();
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) { //Por si el fichero no existe
 			System.out.println("El fichero especificado no existe");
 		} catch (IOException e) {
 			System.out.println("Excepcion de entrada/salida:" + e.toString());
@@ -45,10 +46,11 @@ public class EmpleadoDao {
 		return empleados;
 	}
 
+	//Creamos el metodo para escribir en el fichero
 	public void escribirEmpleados(ArrayList<Empleado> empleados) {
 		
 		try {
-			PrintWriter out = new PrintWriter(new FileWriter("empleados.txt"));
+			PrintWriter out = new PrintWriter(new FileWriter("empleados.txt")); //Decimos que fichero creemos escribir
 			out.println("Empleado:");
 			out.println(empleados.size());
 			for (int i = 0; i < empleados.size(); i++) {

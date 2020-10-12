@@ -22,6 +22,8 @@ public class Turismo extends Vehiculo {
 		turismodao = new TurismoDao();
 		
 	}
+	
+	//Creamos los getter y setters
 
 	public int getNum_puertas() {
 		return num_puertas;
@@ -39,10 +41,13 @@ public class Turismo extends Vehiculo {
 	public void setExtra(int extra) {
 		this.extra = extra;
 	}
+	
+	//creamos metodo leer
 
 	public ArrayList<Vehiculo> leer() {
 		return turismodao.leer();
 	}
+	//creamos metodo escribir
 
 	public void escribir(ArrayList<Vehiculo> vehiculos){
 		turismodao.escribir(vehiculos);

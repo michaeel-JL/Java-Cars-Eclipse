@@ -60,31 +60,31 @@ public class Principal {
                         "7. Añadir un extra\n"+"8. Eliminar un extra\n"+"9. Log out"));
 
 				
-				//
+				//Creamos el switch para que el usuario escoja la opcion correcta
 				switch (opcion) {
 				case 1:
-					mostrarTodos(camiones, turismos); //HECHO
+					mostrarTodos(camiones, turismos); 
 					break;
 				case 2:
-					buscarVehiculo(camiones, turismos); //HECHO
+					buscarVehiculo(camiones, turismos); 
 					break;
 				case 3:
-					anadirVehiculo(camiones, turismos, extras); //HECHO
+					anadirVehiculo(camiones, turismos, extras); 
 					break;
 				case 4:
-					modificarVehiculo(camiones, turismos, extras); // HECHO
+					modificarVehiculo(camiones, turismos, extras); 
 					break;
 				case 5:
-					eliminarVehiculo(camiones, turismos); //HECHO
+					eliminarVehiculo(camiones, turismos); 
 					break;
 				case 6:
-					mostrarExtras(extras); // HECHO
+					mostrarExtras(extras); 
 					break;
 				case 7:
-					anadirExtra(extras); // HECHO
+					anadirExtra(extras); 
 					break;
 				case 8:
-					eliminarExtra(extras); // HECHO
+					eliminarExtra(extras); 
 					break;
 				case 9:
 					seguir = false;
@@ -105,7 +105,7 @@ public class Principal {
 	}
 
 	public static Empleado login(Empleado empleado, ArrayList<Empleado> empleados) {
-
+	//login
 		boolean login = false;
 		String usuario = null;
 		String password;
@@ -125,8 +125,7 @@ public class Principal {
 
             } while (user == false);
              password = JOptionPane.showInputDialog("Indique su contraseña: ");
-
-
+		//comprobamos si coincide el ususario y la contraseña
             for (int i = 0; i < empleados.size(); i++) {
 
                     if (usuario.equals(empleados.get(i).getUsuario())) {
@@ -156,10 +155,11 @@ public class Principal {
 		} while (login == false);
 		return empleado;
 	}
+	//metodo eliminarExtras
 	public static void eliminarExtra(ArrayList<Extra> extras) throws IOException {
 
         int id =Integer.parseInt(JOptionPane.showInputDialog("Indique el id"));
-
+	//buscamos el id y si lo encuentra lo elimina
        boolean encontrado = false;
        for (int i = 0; i < extras.size(); i++) {
            if (extras.get(i).getIdentificador() == id) {
@@ -173,6 +173,8 @@ public class Principal {
        }
 
    }
+	
+	//metodo añadirExtra
 	public static void anadirExtra(ArrayList<Extra> extras) throws IOException {
 		boolean seguir = false;
 		int id = 0;
@@ -181,7 +183,7 @@ public class Principal {
 			try {
 				mostrarExtras(extras);
 				id =Integer.parseInt(JOptionPane.showInputDialog("Indique el id del extras"));
-
+					//buscamos id para ver si esta repetido
 				for (int i = 0; i < extras.size(); i++) {
 					if (extras.get(i).getIdentificador() == id) {
 						System.out.println("Id repetido");
@@ -197,20 +199,21 @@ public class Principal {
 		String descripcion = JOptionPane.showInputDialog("Introduzca la descripcion");
 		// Guardamos en extras el identificador y la descripción que nos ha dado el
 		// usuario
+		
 		Extra newExtra = new Extra(id, descripcion);
 		extras.add(newExtra);
 		newExtra.escribir(extras);
 		JOptionPane.showMessageDialog(null, "Extra añadido correctamente");
 
 	}
-
+	//metodo mostrar extras
 	public static void mostrarExtras(ArrayList<Extra> extras) {
 		for (int i = 0; i < extras.size(); i++) {
 			System.out.println(extras.get(i).toString());
 		}
 
 	}
-
+	//metodo modificarVehiculo
 	public static void modificarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos,
 			ArrayList<Extra> extras) throws IOException {
 
@@ -218,17 +221,16 @@ public class Principal {
 
 		boolean encontrado = false;
 
+
 		for (int i = 0; i < camiones.size(); i++) {
 			if (camiones.get(i).getMatricula().equals(matricula)) {
-				System.out.println("¿Qué deseas modificar?");
-				System.out.println("1. Matrícula");
-				System.out.println("2. Marca");
-				System.out.println("3. Modelo");
-				System.out.println("4. Color");
-				System.out.println("5. Precio");
-				System.out.println("6. Capacidad de Carga");
+				
+				int opcion =Integer.parseInt(JOptionPane.showInputDialog("¿Qué deseas modificar? \n"
+                        + "1. Matrícula\n"+ "2. Marca\n"+"3. Modelo\n"+
+                        "4. Color\n"+"5. Precio\n"+ "6. Capacidad de Carga\n"));
+				
+				
 				try {
-					int opcion = sc.nextInt();
 					switch (opcion) {
 					case 1:
 						String matricula_nueva = JOptionPane.showInputDialog("Introduce la nueva matrícula");
@@ -305,19 +307,16 @@ public class Principal {
 			}
 		}
 
+		// Recorremos todos los turismos
 		for (int i = 0; i < turismos.size(); i++) {
 			if (turismos.get(i).getMatricula().equals(matricula)) {
-				System.out.println("¿Que deseas modificar?");
-				System.out.println("1. Matricula");
-				System.out.println("2. Marca");
-				System.out.println("3. Modelo");
-				System.out.println("4. Color");
-				System.out.println("5. Precio");
-				System.out.println("6. Numero de Puertas");
-				System.out.println("7. Extras");
+				
+				int opcion =Integer.parseInt(JOptionPane.showInputDialog("¿Qué deseas modificar? \n"
+                        + "1. Matrícula\n"+ "2. Marca\n"+"3. Modelo\n"+
+                        "4. Color\n"+"5. Precio\n"+ "6. Numero de Puertas\n"+ "7. Extras\n"));
 
+				//Empezamos preguntando las caracteristicas del turismo
 				try {
-					int opcion = sc.nextInt();
 					switch (opcion) {
 					case 1:
 						System.out.println("Introduce la nueva matricula");
@@ -405,7 +404,7 @@ public class Principal {
 								}
 								break;
 							} catch (InputMismatchException e) {
-								System.err.println("Introduzce solo numeros");
+								System.err.println("Introduzce solo números");
 								sc.nextLine();
 								seguir = true;
 							}
@@ -428,9 +427,11 @@ public class Principal {
 		}
 	}
 
+	//Metodo elimianr vehiculo
 	public static void eliminarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos) throws IOException {
         String matricula = JOptionPane.showInputDialog("Introduzca la matricula");
 
+        //Recorremos camiones
         boolean encontrado = false;
         for (int i = 0; i < camiones.size(); i++) {
             if (camiones.get(i).getMatricula().equals(matricula)) {
@@ -455,11 +456,14 @@ public class Principal {
         }
     }
 
+	//Metodo para buscar un vehiculo
 	public static void buscarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos) {
+		//mostramos todos
 		mostrarTodos(camiones, turismos);
         String matricula  = JOptionPane.showInputDialog("Indica la matrícula");
 
 		boolean encontrado = false;
+		//COmprobamos en ambas listas
 		for (int i = 0; i < camiones.size(); i++) {
 			if (camiones.get(i).getMatricula().equals(matricula)) {
 				JOptionPane.showMessageDialog(null, camiones.get(i).toString());
@@ -479,6 +483,7 @@ public class Principal {
 		}
 	}
 
+	//Mostramos todos los vehiculos
 	public static void mostrarTodos(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos) {
 		System.out.println("Camiones");
 		for (int i = 0; i < camiones.size(); i++) {
@@ -494,6 +499,7 @@ public class Principal {
 			ArrayList<Extra> extras) throws IOException {
 		boolean seguir = false;
 		String matricula = "";
+		//Pedimos todos los datos sobre el vehiculo que añadiremos
 		do {
 			seguir = false;
             matricula = JOptionPane.showInputDialog("Introduzca la matricula");

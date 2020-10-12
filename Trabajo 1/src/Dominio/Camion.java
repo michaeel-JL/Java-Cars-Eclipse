@@ -22,7 +22,7 @@ public class Camion extends Vehiculo {
 	public Camion() {
 		camiondao= new CamionDao();
 	}
-
+	//Aqui se listan todos los getter y setter
 
 	public int getCapacidad_carga() {
 		return capacidad_carga;
@@ -37,11 +37,11 @@ public class Camion extends Vehiculo {
 		return "Camion ( Matricula: " + matricula + ", Marca:" + marca + ", Modelo:" + modelo + ", Color: " + color
 				+ ", Precio: " + precio + ", Capacidad de carga: " + capacidad_carga + " )";
 	}
-
+	//Creamos metodo de leer
 	public ArrayList<Vehiculo> leer() {
 		return camiondao.leer();
 	}
-
+	//Metodo de escribir
 	public void escribir(ArrayList<Vehiculo> vehiculos) {
 		camiondao.escribir(vehiculos);
 	}

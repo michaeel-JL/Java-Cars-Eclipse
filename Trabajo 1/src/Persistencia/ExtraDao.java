@@ -12,15 +12,16 @@ import Dominio.Extra;
 
 public class ExtraDao {
 	
-	
+	//Creamos contructor vacio
 	public ExtraDao() {
 
 
 }
+	//Creamos metodo para leer el fichero
 	public ArrayList<Extra> leer(){
 		ArrayList<Extra> extras=new ArrayList<Extra>();
 		try {
-			Scanner in=new Scanner(new  FileReader("extras.txt"));
+			Scanner in=new Scanner(new  FileReader("extras.txt")); //Leemos el fichero
 			in.next();
 			int contador = in.nextInt();		
 			for(int i=0;i<contador;i++) {
@@ -33,7 +34,7 @@ public class ExtraDao {
 				
 			}
 			in.close();
-		} catch(FileNotFoundException e) {
+		} catch(FileNotFoundException e) { //Por si el fichero no existe
 			System.out.println("El fichero especificado no existe");
 		} catch(IOException e) {
 			System.out.println("Excepcion de entrada/salida" + e.toString());
@@ -42,9 +43,10 @@ public class ExtraDao {
 		return extras;
 	}
 	
+	//Creamos el metodo para escribir en el fichero
 	public void escribir(ArrayList<Extra> extras) {
 		try{
-		PrintWriter out= new PrintWriter(new FileWriter("extras.txt"));
+		PrintWriter out= new PrintWriter(new FileWriter("extras.txt")); //Decimos que fichero creemos escribir
 		out.println("Extras: ");
 		out.println(extras.size());
 		for(int i =0;i<extras.size();i++) {

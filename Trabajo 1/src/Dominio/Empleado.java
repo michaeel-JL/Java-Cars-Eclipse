@@ -19,7 +19,9 @@ public class Empleado {
 	public Empleado() {
 		empleadodao= new EmpleadoDao();
 	}
-
+	
+	//Creamos metodos setter y getters
+	
 	public String getUsuario() {
 		return usuario;
 	}
@@ -41,13 +43,13 @@ public class Empleado {
 		return "Empleado [usuario=" + usuario + ", password=" + password + "]";
 	}
 	
-	
+	//creamos metodo de leer
 	public ArrayList<Empleado> leerEmpleados(){
 		return empleadodao.leerEmpleados();
 	}
+	
+	//Creamos metodo escribir
 	public void escribirEmpleados(ArrayList<Empleado> personas){
 		empleadodao.escribirEmpleados(personas);
 	}
-	
-
 }

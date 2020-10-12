@@ -10,7 +10,8 @@ abstract public class Vehiculo {
 	protected String matricula, marca, modelo, color;
 	protected double precio;
 	private VehiculoDao vehiculodao;
-
+	
+	//Generamos constructor
 	public Vehiculo(String matricula, String marca, String modelo, String color, double precio) {
 		this.matricula = matricula;
 		this.marca = marca;
@@ -25,7 +26,7 @@ abstract public class Vehiculo {
 	public String getMatricula() {
 		return matricula;
 	}
-
+//generamos los getter y setters
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
